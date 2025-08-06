@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>کارت پستال تولد</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #ffe6f0 0%, #fcd1e3 100%);
+    font-family: 'Tahoma', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+  }
+  #countdown {
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    direction: ltr;
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+  #message {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #b30059;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+  }
+  .flower {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url('https://i.imgur.com/5M3gb8P.png') no-repeat center/contain;
+  }
+  .flower:nth-child(1) { top: 20px; left: 20px; }
+  .flower:nth-child(2) { top: 20px; right: 20px; }
+  .flower:nth-child(3) { bottom: 20px; left: 20px; }
+  .flower:nth-child(4) { bottom: 20px; right: 20px; }
+</style>
+</head>
+<body>
+  <div class="flower"></div>
+  <div class="flower"></div>
+  <div class="flower"></div>
+  <div class="flower"></div>
+
+  <div id="countdown">Loading...</div>
+  <div id="message">پیشاپیش تولدت مبارک آجی 🎉🌸</div>
+
+<script>
+  function updateCountdown() {
+    const now = new Date();
+    let target = new Date(now.getFullYear(), 11, 31, 0, 0, 0);
+    if (now > target) target = new Date(now.getFullYear() + 1, 11, 31, 0, 0, 0);
+    const diff = target - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('countdown').innerHTML =
+      `${days} روز | ${hours} ساعت | ${minutes} دقیقه | ${seconds} ثانیه`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+</body>
+</html>
